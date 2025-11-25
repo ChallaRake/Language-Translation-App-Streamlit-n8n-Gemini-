@@ -55,6 +55,12 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
+
+**Open in your browser:**
+```arduino
+http://localhost:8501
+```
+
 ---
 
 ## 📡 API Communication
@@ -83,3 +89,10 @@ streamlit run app.py
 | `Lang_Translatn_Streamlit_Application using Webhook.json` | n8n workflow containing Webhook + AI Agent + Gemini model  |
 | `README.md`                                               | Documentation for your project                             |
 | `requirements.txt`                                        | Python dependencies list                                   |
+
+---
+
+### 🔄 n8n Cloud or Self-Hosted
+- Import workflow JSON
+- Activate workflow
+- Update Webhook URL if needed
