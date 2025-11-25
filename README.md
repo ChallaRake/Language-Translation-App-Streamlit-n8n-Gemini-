@@ -96,3 +96,14 @@ http://localhost:8501
 - Import workflow JSON
 - Activate workflow
 - Update Webhook URL if needed
+
+---
+
+## 📹 Demo Video
+
+👉 **Watch the full workflow demo here:**  
+### [*Language Translation App Automation*]()
+
+---
+<img width="1913" height="1047" alt="Screenshot 2025-11-25 210652" src="https://github.com/user-attachments/assets/e4c48361-8e1c-4348-81f1-bfcda7cf5518" />
+
