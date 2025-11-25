@@ -1,0 +1,110 @@
+{
+  "name": "Lang_Translatn_Streamlit_Application using Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bc95ff95-2880-4133-adbe-3c1ae89d6a85",
+        "responseMode": "lastNode",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a91b2ccc-872d-461d-acab-d10d56bfbb35",
+      "name": "Webhook",
+      "webhookId": "bc95ff95-2880-4133-adbe-3c1ae89d6a85"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Translate this message : {{ $json.body.text }}\n\nLanguage name: {{ $json.body.language_name }}\nTarget Language: {{ $json.body.target_language }}",
+        "options": {
+          "systemMessage": "You are an advanced multilingual translation assistant. Your task is to accurately translate the provided text into the target language specified by the user. Maintain the original meaning, tone, formatting, and context while ensuring the translation is natural and fluent for a native speaker.\n\nInstructions:\n- Translate ONLY the given input text.\n- Do NOT add extra commentary, explanations, or modify the content beyond linguistic accuracy.\n- If the target language is not specified, respond with: \"Error: No target language detected.\"\n- Preserve emojis, numbers, names, URLs, and special formatting (e.g., bold, quotes, line breaks).\n- If the input text is already in the target language, respond: \"The text is already in the requested language.\"\n\nOutput Format:\n- Provide only the translated text with no additional information.\n\nExample:\nUser Input: \"Hello, how are you?\"\nTarget Language: Spanish\nOutput: \"Hola, ¿cómo estás?\"\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f276b500-beaa-48a4-a7f8-4b7d900d023d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        208,
+        192
+      ],
+      "id": "922c0dba-f4d0-4a1c-a89d-f5314ba1d148",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "uAiOpPpqhxaTZ6UM",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### High-level overview\nThis n8n workflow exposes an HTTP Webhook that receives POST requests (from your Streamlit app or other client), sends the incoming payload into an AI Agent (a LangChain-style agent node) that uses Google Gemini (PaLM) as its language model to produce a translation. The workflow is active and set to execute in a simple linear order.",
+        "height": 208,
+        "width": 336
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -400,
+        -80
+      ],
+      "typeVersion": 1,
+      "id": "2409b2e6-ecad-4c56-bbdb-d05563600146",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2af4d848-77d1-4a54-8783-3588d254f5fb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ebe0f18b11a8305de4db5baa1c2b11c69c682d807aa200c043e0657e96fd7066"
+  },
+  "id": "3PxZtCyxai6cWhOy",
+  "tags": []
+}
